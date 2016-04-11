@@ -1,2 +1,2 @@
 window.vueComps ?= {}
-window.vueComps.pushpin = require('../pushpin.js')(Vue)
+window.vueComps.pushpin = require('../pushpin.js')
