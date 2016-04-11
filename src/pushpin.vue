@@ -47,6 +47,7 @@ module.exports =
   compiled: ->
     @onWindowScroll @calc
   attached: ->
+    @$appendTo document.body
     @calc()
 
 </script>

@@ -26,6 +26,9 @@ components:
   <div>content</div>
 </pushpin>
 ```
+
+The pushpin will attach itself to the body automatically.
+
 For examples see [`dev/`](dev/).
 
 #### Props
