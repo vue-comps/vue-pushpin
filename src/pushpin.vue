@@ -11,6 +11,7 @@ module.exports =
 
   mixins:[
     require("vue-mixins/onWindowScroll")
+    require("vue-mixins/getDocumentHeight")
   ]
 
   props:
@@ -30,11 +31,9 @@ module.exports =
       top: null
   methods:
     calc: ->
-      body = document.body
-      html = document.documentElement
-      scrollTop = window.pageYOffset or html.scrollTop
+      scrollTop = window.pageYOffset or document.documentElement.scrollTop
       if @bottom
-        height = document.height or Math.max( body.scrollHeight, body.offsetHeight,html.clientHeight, html.scrollHeight, html.offsetHeight )
+        height = @getDocumentHeight()
       if scrollTop+@offset < @top
         @style.top = @top  + "px"
         @style.position = "absolute"
