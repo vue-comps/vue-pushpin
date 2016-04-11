@@ -17,6 +17,5 @@ module.exports =
   position absolute
   left 250px
   top 40px
-body
   height 2000px
 </style>
