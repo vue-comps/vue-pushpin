@@ -33,21 +33,21 @@ module.exports =
       body = document.body
       html = document.documentElement
       scrollTop = window.pageYOffset or html.scrollTop
-      height = document.height or Math.max( body.scrollHeight, body.offsetHeight,html.clientHeight, html.scrollHeight, html.offsetHeight )
+      if @bottom
+        height = document.height or Math.max( body.scrollHeight, body.offsetHeight,html.clientHeight, html.scrollHeight, html.offsetHeight )
       if scrollTop+@offset < @top
-        @style.top = @top+ "px"
+        @style.top = @top  + "px"
         @style.position = "absolute"
-      else if scrollTop+@offset > height - @bottom
+      else if @bottom and scrollTop+@offset > height - @bottom
         @style.top = height - @bottom + "px"
         @style.position = "absolute"
-      else
+      else if @style.position != "fixed"
         @style.top = @offset + "px"
         @style.position = "fixed"
 
   compiled: ->
     @onWindowScroll @calc
   attached: ->
-    @$appendTo document.body
     @calc()
 
 </script>

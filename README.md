@@ -27,7 +27,7 @@ components:
 </pushpin>
 ```
 
-The pushpin will attach itself to the body automatically.
+The pushpin will change its `position` to `absolute`, so it should be positioned relative to `body`.
 
 For examples see [`dev/`](dev/).
 
