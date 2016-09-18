@@ -32,12 +32,16 @@ The pushpin will change its `position` to `absolute`, so it should be positioned
 For examples see [`dev/`](dev/).
 
 #### Props
-| Name | type | default | description |
-| ---:| --- | ---| --- |
-| top | Number | 0 | minimum distance to document top (header height) |
-| offset | Number | 0 | distance to the viewport top |
-| bottom | Number | 0 | minimum distance to document bottom (footer height) |
+Name | type | default | description
+---:| --- | ---| ---
+top | Number | 0 | minimum distance to document top (header height)
+offset | Number | 0 | distance to the viewport top on scrolling (should be smaller than top)
+bottom | Number | 0 | minimum distance to document bottom (footer height)
 
+## Changelog
+- 1.0.0  
+some cleaning  
+added unit tests  
 
 # Development
 Clone repository.

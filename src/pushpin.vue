@@ -1,7 +1,7 @@
 // out: ..
-<template lang="jade">
+<template lang="pug">
 div(
-  v-bind:style="style"
+  v-bind:style="computedStyle"
   )
   slot
 </template>
@@ -12,37 +12,40 @@ module.exports =
   mixins:[
     require("vue-mixins/onWindowScroll")
     require("vue-mixins/getDocumentHeight")
+    require("vue-mixins/style")
   ]
 
   props:
-    "top":
+    style:
+      default: -> []
+    top:
       type: Number
       default: 0
-    "offset":
+      coerce: Number
+    offset:
       type: Number
       default: 0
-    "bottom":
+      coerce: Number
+    bottom:
       type: Number
       default: 0
+      coerce: Number
 
   data: ->
-    style:
-      position: null
-      top: null
+    mergeStyle: {}
   methods:
     calc: ->
-      scrollTop = window.pageYOffset or document.documentElement.scrollTop
+      body = document.body
+      docEl = document.documentElement
+      scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop
       if @bottom
         height = @getDocumentHeight()
       if scrollTop+@offset < @top
-        @style.top = @top  + "px"
-        @style.position = "absolute"
+        @mergeStyle = top: @top  + "px", position: "absolute"
       else if @bottom and scrollTop+@offset > height - @bottom
-        @style.top = height - @bottom + "px"
-        @style.position = "absolute"
-      else if @style.position != "fixed"
-        @style.top = @offset + "px"
-        @style.position = "fixed"
+        @mergeStyle = top: height - @bottom + "px", position: "absolute"
+      else if @mergeStyle.position != "fixed"
+        @mergeStyle = top: @offset + "px", position: "fixed"
 
   compiled: ->
     @onWindowScroll @calc
